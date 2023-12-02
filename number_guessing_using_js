@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #282c34;
+            color: #61dafb;
+        }
+        #score, #number, #message, #guess {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Guessing Game</h1>
+    <p id="score">Score: <span id="scoreValue">0</span></p>
+    <p id="number">?</p>
+    <p id="message">Start guessing...</p>
+    <input type="number" id="guess" placeholder="Enter your guess">
+    <button class="again">Again</button>
+
+    <script>
+        // Assuming these are your initial values
+        let score = 0;
+        let secretNumber = Math.floor(Math.random() * 20) + 1; // Adjust range as needed
+
+        const scoreElement = document.getElementById('scoreValue');
+        const numberElement = document.getElementById('number');
+        const messageElement = document.getElementById('message');
+        const guessInput = document.getElementById('guess');
+        const againButton = document.querySelector('.again');
+
+        // Function to reset the game
+        function resetGame() {
+            score = 0;
+            secretNumber = Math.floor(Math.random() * 20) + 1; // Reset secret number
+            scoreElement.textContent = score;
+            numberElement.textContent = '?';
+            messageElement.textContent = 'Start guessing...';
+            guessInput.value = '';
+            document.body.style.backgroundColor = '#282c34';
+            numberElement.style.width = '15rem';
+        }
+
+        // Event listener for the "Again" button
+        againButton.addEventListener('click', resetGame);
+
+        // You might want to include your existing guess logic here
+    </script>
+</body>
+</html>
