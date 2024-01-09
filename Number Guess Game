@@ -57,8 +57,8 @@ document.querySelector('.check').addEventListener('click',function(){
       document.querySelector('.highscore').textContent=score;
     }
     }
-  //  wrong
    //high
+
    else if(guess>secretNumber){
     if(score>1){
       document.querySelector('.message').textContent="To high";
@@ -70,6 +70,8 @@ document.querySelector('.check').addEventListener('click',function(){
       document.querySelector('.message').textContent=0;
     }
    }
+
+//  wrong
    else if(guess<secretNumber){
     if(score>1){
       document.querySelector('.message').textContent="To low";
