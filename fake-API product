@@ -1,0 +1,100 @@
+import { useState, useEffect } from "react";
+import "./App.css";
+import axios from "axios";
+
+const App = () => {
+  const [fake, setFake] = useState([]);
+  console.log(fake);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await 
+        axios
+        .get("https://fakestoreapi.com/products",fake);
+        const jsonData = response.data;
+        console.log(jsonData);
+        setFake(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // without useeffect
+
+  // fetch('https://fakestoreapi.com/products/',fake)
+  // const fakeStore = async () => {
+  //   const response = await fetch("https://fakestoreapi.com/products");
+  //   console.log(response);
+  //   const jsonData = await response.json();
+  //   setFake(jsonData);
+  //   console.log(jsonData);
+  // };
+  // fakeStore();
+  return (
+    <>
+      <h2>Fake API STORE</h2>
+      <div className="container">
+        {fake.map((values) => {
+          return (
+            <>
+              <div className="box" key={values.id}>
+                <div className="content">
+                  <h5>{values.title}</h5>
+                  <p>{values.description}</p>
+                </div>
+                <img src={values.image} alt="" />
+              </div>
+            </>
+          );
+        })}
+      </div>
+    </>
+  );
+};
+export default App;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Roboto:wght@300&display=swap');
+body{
+  background-color: black;
+}
+h2{
+  color: aqua;
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 2px;
+  font-family: sans-serif;
+}
+.container{
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+.box{
+  background-color:burlywood;
+  width: 28%;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 2px 2px 10px white;
+  height: 599px;
+}
+h5{
+  color: aliceblue;
+  text-align: center;
+  font-family: sans-serif;
+}
+p{
+  color: palegreen;
+  font-size: 1rem;
+}
+img{
+  width: 300px;
+  height: 200px;
+  object-fit: contain;
+  margin-top: 50px;
+}
+
